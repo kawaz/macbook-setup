@@ -1,0 +1,49 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  sudo: no
+
+  tasks:
+    - name: homebrew_tap
+      homebrew_tap: tap={{item}}
+      with_items:
+        - homebrew/binary
+        - homebrew/dupes
+        - kawaz/itumono
+    - name: homebrew update/upgrade
+      homebrew: update_homebrew=yes upgrade_all=yes
+    - name: homebrew install
+      homebrew: >
+        name={{ item.name }}
+        state={{ item.state|default("latest") }}
+        install_options={{ item.install_options|default() }}
+      with_items:
+        - name: binutils
+        - name: coreutils
+        - name: findutils
+        - name: bash
+        - name: bash-completion2
+        - name: tmux
+        - name: reattach-to-user-namespace
+        - name: xz
+        - name: unrar
+        # devel
+        - name: awscli
+        - name: jq
+        - name: git
+        - name: mercurial
+        - name: subversion
+        - name: go
+        - name: tig
+        # vim
+        - name: lua
+        - name: vim
+          install_options: devel,with-lua
+        # misc
+        - name: docker
+        - name: mysql
+        - name: redis
+        - name: packer
+        - name: phantomjs
+        - name: djbdns
+        - name: imagemagick

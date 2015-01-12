@@ -49,3 +49,6 @@
         - name: phantomjs
         - name: djbdns
         - name: imagemagick
+        - name: ffmpeg
+          install_options: with-faac,with-fdk-aac,with-ffplay,with-libvorbis,with-libvpx,with-openssl,with-opus,with-rtmpdump,with-x265
+          state: latest

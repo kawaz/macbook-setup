@@ -35,10 +35,12 @@
         - name: subversion
         - name: go
         - name: tig
-        # vim
         - name: lua
+        # vim
         - name: vim
-          install_options: devel,with-lua
+          install_options: with-lua,with-luajit
+        - name: fontforge
+          install_options: with-python
         # misc
         - name: docker
         - name: mysql
